@@ -6,21 +6,25 @@ export default function TextForm(props) {
   const handleUpclick = () => {
     let newText = text.toUpperCase();
     setText(newText);
+    props.showAlert("Converted to Uppercase", "success");
   };
 
   const handleLoclick = () => {
     let newText = text.toLowerCase();
     setText(newText);
+    props.showAlert("Converted to Lowercase", "success");
   };
 
   const handleCopy = () => {
     var text = document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
+    props.showAlert("Copied to Clipboard", "success");
   }
   const handleExtra = () => {
     let  newText = text.split(/[ ]+/);
     setText(newText.join(" "));
+    props.showAlert("Extra Spaces removed", "success");
   }
   const handleCapclick = () => {
     let newText = text
@@ -29,10 +33,12 @@ export default function TextForm(props) {
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ');
     setText(newText);
+    props.showAlert("Covered to Capitalize words", "success");
   };
   const handleClearclick = () => {
     let newText ='';
     setText(newText);
+    props.showAlert("Text Cleared", "success");
   }
 
   const handleOnchange = (event) => {
