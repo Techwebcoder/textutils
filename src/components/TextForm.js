@@ -19,6 +19,7 @@ export default function TextForm(props) {
     var text = document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
+    document.getSelection().removeAllRanges();
     props.showAlert("Copied to Clipboard", "success");
   }
   const handleExtra = () => {
@@ -61,23 +62,23 @@ export default function TextForm(props) {
             onChange={handleOnchange}
             rows="8"
           ></textarea>
-          <div className="d-flex justify-content-center">
-            <button type="button" className="btn btn-primary mx-4 my-3" onClick={handleUpclick}>
+          <div>
+            <button disabled ={text.length===0} type="button" className="btn btn-primary mx-1 my-1" onClick={handleUpclick}>
               Change to Uppercase
             </button>
-            <button type="button" className="btn btn-warning mx-4 my-3" onClick={handleLoclick}>
+            <button disabled ={text.length===0} type="button" className="btn btn-warning mx-1 my-1" onClick={handleLoclick}>
               Change to Lowercase
             </button>
-            <button type="button" className="btn btn-dark mx-4 my-3" onClick={handleCapclick}>
+            <button disabled ={text.length===0} type="button" className="btn btn-dark mx-1 my-1" onClick={handleCapclick}>
               Change to Capitalize
             </button>
-            <button type="button" className="btn btn-secondary mx-4 my-3" onClick={handleExtra}>
+            <button disabled ={text.length===0} type="button" className="btn btn-secondary mx-1 my-1" onClick={handleExtra}>
               Remove Extraspace 
             </button>
-            <button type="button" className="btn btn-info mx-4 my-3" onClick={handleCopy}>
+            <button disabled ={text.length===0} type="button" className="btn btn-info mx-1 my-1" onClick={handleCopy}>
               Copy Text
             </button>
-            <button type="button" className="btn btn-danger mx-4 my-3" onClick={handleClearclick}>
+            <button disabled ={text.length===0} type="button" className="btn btn-danger mx-1 my-1" onClick={handleClearclick}>
               Clear Text
             </button>
           </div>
@@ -85,7 +86,7 @@ export default function TextForm(props) {
       </div>
       <div className="container" style ={{color : props.mode==='dark'?'white':'#042743'}}>
         <h2>Your Text Summary</h2>
-        <p>{getWordCount()} Words and {text.length} Characters</p>
+        <p>{getWordCount()} Words and {text.replace(/\s+/g, "").length} Characters</p>
         <p>{(0.008 * getWordCount()).toFixed(3)} Minutes read</p>
       </div>
     </>

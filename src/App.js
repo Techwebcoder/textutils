@@ -3,13 +3,11 @@ import Navbar from "./components/Navbar.js";
 import TextForm from "./components/TextForm.js";
 import Alert from "./components/Alert.js";
 import About from "./components/About.js";
-import ErrorBoundary from "./components/ErrorBoundary.js";
 import React, { useState }from 'react';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
 } from "react-router-dom";
 
 function App() {
@@ -30,14 +28,14 @@ function App() {
       setMode('dark');
       document.body.style.backgroundColor = '#042743';
       showAlert("Dark Mode has been enabled", "success");
-      document.title = "TextUtils-DarkMode";
+      // document.title = "TextUtils-DarkMode";
     }
     else
     {
       setMode('light');
       document.body.style.backgroundColor = 'white';
       showAlert("Light Mode has been enabled", "success");
-      document.title = "TextUtils-LightMode";
+      // document.title = "TextUtils-LightMode";
     }
   }
   return (
